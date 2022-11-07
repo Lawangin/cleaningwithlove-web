@@ -1,0 +1,29 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-cleaningwithlove-dev-143210-authRole",
+      "UnauthRoleArn": "arn:aws:iam::992293952919:role/amplify-cleaningwithlove-dev-143210-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::992293952919:role/amplify-cleaningwithlove-dev-143210-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-cleaningwithlove-dev-143210-deployment",
+      "UnauthRoleName": "amplify-cleaningwithlove-dev-143210-unauthRole",
+      "StackName": "amplify-cleaningwithlove-dev-143210",
+      "StackId": "arn:aws:cloudformation:us-east-1:992293952919:stack/amplify-cleaningwithlove-dev-143210/29835ce0-5d38-11ed-bcb4-0aee231dda89",
+      "AmplifyAppId": "d2zahujapvocyb"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2zahujapvocyb",
+          "type": "cicd"
+        }
+      },
+      "auth": {
+        "cleaningwithlove32a9d161": {}
+      },
+      "storage": {
+        "cleaningWithLoveAssets": {}
+      }
+    }
+  }
+}

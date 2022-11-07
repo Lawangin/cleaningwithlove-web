@@ -1,0 +1,15 @@
+{
+  "resourceName": "cleaningWithLoveAssets",
+  "policyUUID": "d1604239",
+  "bucketName": "cleaning-with-love-assets",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
