@@ -28,12 +28,9 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Create Next App</title>
+        <title>Cleaing With Love</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <ContainerWrapper color={'white'}>
-        <NavBar />
-      </ContainerWrapper>
 
       <ContainerWrapper color={'bg-brandBlueLight'}>
         <MainContent />
