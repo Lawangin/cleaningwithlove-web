@@ -6,7 +6,7 @@ const MainContent = (): JSX.Element => {
   const [imgUrl, setImgUrl] = useState<string | null>(null)
 
   useEffect(() => {
-    Storage.get('woman-mopping-the-floor1svg.svg') // for listing ALL files without prefix, pass '' instead
+    Storage.get('woman-mopping-the-floor1svg.svg', { level: 'public' }) // for listing ALL files without prefix, pass '' instead
       .then((result) => setImgUrl(result))
       .catch((err) => console.log(err))
   }, [])

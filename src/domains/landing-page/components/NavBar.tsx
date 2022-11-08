@@ -7,7 +7,7 @@ const NavBar = (): JSX.Element => {
   const [imgUrl, setImgUrl] = useState<string | null>(null)
 
   useEffect(() => {
-    Storage.get('Asset 1.svg') // for listing ALL files without prefix, pass '' instead
+    Storage.get('Asset 1.svg', { level: 'public' }) // for listing ALL files without prefix, pass '' instead
       .then((result) => setImgUrl(result))
       .catch((err) => console.log(err))
   }, [])
