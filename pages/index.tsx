@@ -1,8 +1,6 @@
 import type { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import Head from 'next/head'
-import { Amplify } from 'aws-amplify'
-import awsconfig from '../src/aws-exports'
 import { Storage } from 'aws-amplify'
 import ContainerWrapper from '../src/domains/landing-page/components/ContainerWrapper'
 import NavBar from '../src/domains/landing-page/components/NavBar'
@@ -10,8 +8,6 @@ import MainContent from '../src/domains/landing-page/components/MainContent'
 import SecondaryContent from '../src/domains/landing-page/components/SecondaryContent'
 import TertiaryContent from '../src/domains/landing-page/components/TertiaryContent'
 import Footer from '../src/domains/landing-page/components/Footer'
-
-Amplify.configure(awsconfig)
 
 const Home: NextPage = () => {
   const [imgUrl, setImgUrl] = useState('/vercel.svg')

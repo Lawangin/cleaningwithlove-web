@@ -28,7 +28,7 @@ const MainContent = (): JSX.Element => {
       {imgUrl ? (
         <img src={imgUrl} alt='Cartoon woman mopping the floor' />
       ) : (
-        <p>Loading</p>
+        <p>Loading...</p>
       )}
     </div>
   )
