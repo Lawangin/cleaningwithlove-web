@@ -42,6 +42,9 @@ const envVars = {
     process.env.NEXT_PUBLIC_AWS_USER_FILES_S3_BUCKET_REGION
 }
 
+console.log(envVars)
+logger.debug('awsconfigs', envVars)
+
 Amplify.configure(envVars)
 
 const NavBar = (): JSX.Element => {
