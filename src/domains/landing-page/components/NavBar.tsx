@@ -3,10 +3,10 @@ import { useEffect, useState } from 'react'
 import { Storage } from 'aws-amplify'
 import ContainerWrapper from './ContainerWrapper'
 import { Amplify, Logger } from 'aws-amplify'
-import awsconfig from '../../../../src/aws-exports'
+// import awsconfig from '../../../../src/aws-exports'
 
 const logger = new Logger('AMP-LOGS')
-logger.debug('awsconfigs', awsconfig)
+// logger.debug('awsconfigs', awsconfig)
 
 const some: Number = Number(
   process.env
