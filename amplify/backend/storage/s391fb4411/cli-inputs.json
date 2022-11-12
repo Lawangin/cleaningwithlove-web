@@ -1,0 +1,17 @@
+{
+  "resourceName": "s391fb4411",
+  "policyUUID": "91fb4411",
+  "bucketName": "cleaningwithlove9b6eca57d8c0499aac1bbfbbbf6a205",
+  "storageAccess": "authAndGuest",
+  "guestAccess": [
+    "CREATE_AND_UPDATE",
+    "READ"
+  ],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
