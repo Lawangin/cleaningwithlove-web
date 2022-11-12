@@ -2,6 +2,7 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import NavBar from '../src/domains/landing-page/components/NavBar'
 import { Amplify } from 'aws-amplify'
+import awsExports from '../src/aws-exports'
 
 const some: Number = Number(
   process.env
@@ -37,26 +38,26 @@ const envVars = {
     process.env.NEXT_PUBLIC_AWS_USER_FILES_S3_BUCKET_REGION
 }
 
-const envS3 = {
-  Auth: {
-    identityPoolId: process.env.NEXT_PUBLIC_AWS_COGNITO_IDENTITY_POOL_ID, // (required) - Amazon Cognito Identity Pool ID
-    region: process.env.NEXT_PUBLIC_AWS_COGNITO_REGION, // (required) - Amazon Cognito Region
-    userPoolId: process.env.NEXT_PUBLIC_AWS_USER_POOLS_ID, // (optional) - Amazon Cognito User Pool ID
-    userPoolWebClientId: process.env.NEXT_PUBLIC_AWS_USER_POOLS_WEB_CLIENT_ID, // (optional) - Amazon Cognito Web Client ID (App client secret needs to be disabled)
-    mandatorySignIn: false
-  },
-  Storage: {
-    AWSS3: {
-      bucket: process.env.NEXT_PUBLIC_AWS_USER_FILES_S3_BUCKET, // (required) -  Amazon S3 bucket name
-      region: process.env.NEXT_PUBLIC_AWS_USER_FILES_S3_BUCKET_REGION,
-      identityPoolId: process.env.NEXT_PUBLIC_AWS_COGNITO_IDENTITY_POOL_ID // (optional) -  Amazon service region
-    }
-  }
-}
+// const envS3 = {
+//   Auth: {
+//     identityPoolId: process.env.NEXT_PUBLIC_AWS_COGNITO_IDENTITY_POOL_ID, // (required) - Amazon Cognito Identity Pool ID
+//     region: process.env.NEXT_PUBLIC_AWS_COGNITO_REGION, // (required) - Amazon Cognito Region
+//     userPoolId: process.env.NEXT_PUBLIC_AWS_USER_POOLS_ID, // (optional) - Amazon Cognito User Pool ID
+//     userPoolWebClientId: process.env.NEXT_PUBLIC_AWS_USER_POOLS_WEB_CLIENT_ID, // (optional) - Amazon Cognito Web Client ID (App client secret needs to be disabled)
+//     mandatorySignIn: false
+//   },
+//   Storage: {
+//     AWSS3: {
+//       bucket: process.env.NEXT_PUBLIC_AWS_USER_FILES_S3_BUCKET, // (required) -  Amazon S3 bucket name
+//       region: process.env.NEXT_PUBLIC_AWS_USER_FILES_S3_BUCKET_REGION,
+//       identityPoolId: process.env.NEXT_PUBLIC_AWS_COGNITO_IDENTITY_POOL_ID // (optional) -  Amazon service region
+//     }
+//   }
+// }
 
 console.log(envVars)
 
-Amplify.configure(envS3)
+Amplify.configure({ ...awsExports, ssr: true })
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
