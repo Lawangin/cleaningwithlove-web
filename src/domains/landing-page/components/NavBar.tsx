@@ -12,13 +12,16 @@ const NavBar = (): JSX.Element => {
   const [imgUrl, setImgUrl] = useState<string | null>(null)
 
   useEffect(() => {
-    Storage.get('Asset 1.svg', { level: 'public' })
+    Storage.get('Asset 1.svg', {
+      level: 'public',
+      identityId: process.env.NEXT_PUBLIC_AWS_COGNITO_IDENTITY_POOL_ID
+    })
       .then((result) => setImgUrl(result))
       .catch((err) => {
         logger.debug('GET_STORAGE', err)
         return console.log(err)
       })
-  }, [])
+  }, [imgUrl])
 
   return (
     <ContainerWrapper color={'white'}>
