@@ -43,7 +43,7 @@ const envS3 = {
     region: process.env.NEXT_PUBLIC_AWS_COGNITO_REGION, // (required) - Amazon Cognito Region
     userPoolId: process.env.NEXT_PUBLIC_AWS_USER_POOLS_ID, // (optional) - Amazon Cognito User Pool ID
     userPoolWebClientId: process.env.NEXT_PUBLIC_AWS_USER_POOLS_WEB_CLIENT_ID, // (optional) - Amazon Cognito Web Client ID (App client secret needs to be disabled)
-    aws_mandatory_sign_in: 'disable'
+    mandatorySignIn: false
   },
   Storage: {
     AWSS3: {
