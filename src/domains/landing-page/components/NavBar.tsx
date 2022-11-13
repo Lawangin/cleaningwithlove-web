@@ -1,21 +1,31 @@
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import { Storage } from 'aws-amplify'
 import ContainerWrapper from './ContainerWrapper'
+import { getPresignedUrlWithKey } from '../../../services/s3'
 // import awsconfig from '../../../../src/aws-exports'
 
 // logger.debug('awsconfigs', awsconfig)
 
 const NavBar = (): JSX.Element => {
-  const [imgUrl, setImgUrl] = useState<string | null>(null)
+  const [imgUrl, setImgUrl] = useState<string | undefined>()
+
+  const runAsyncFunc = async () => {
+    const { error, presignedUrls } = await getPresignedUrlWithKey(
+      'publicAssets',
+      'Asset 2.png'
+    )
+
+    setImgUrl(presignedUrls)
+  }
 
   useEffect(() => {
-    Storage.get('Asset 2.png')
-      .then((result) => setImgUrl(result))
-      .catch((err) => {
-        return console.log(err)
-      })
-  }, [imgUrl])
+    // Storage.get('Asset 2.png')
+    //   .then((result) => setImgUrl(result))
+    //   .catch((err) => {
+    //     return console.log(err)
+    //   })
+    runAsyncFunc()
+  }, [])
 
   return (
     <ContainerWrapper color={'white'}>

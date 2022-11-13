@@ -1,16 +1,25 @@
 import { useEffect, useState } from 'react'
-import { Storage } from 'aws-amplify'
 import Button from '../../global/components/Button'
+import { getPresignedUrlWithKey } from '../../../services/s3'
 
 const MainContent = (): JSX.Element => {
-  const [imgUrl, setImgUrl] = useState<string | null>(null)
+  const [imgUrl, setImgUrl] = useState<string | null>()
+
+  const runAsyncFunc = async () => {
+    const { error, presignedUrls } = await getPresignedUrlWithKey(
+      'publicAssets',
+      'vecteezy_woman-mopping-the-floor-for-spring-cleaning-concept_5860249 [Converted] 1.png'
+    )
+    setImgUrl(presignedUrls)
+  }
 
   useEffect(() => {
-    Storage.get(
-      'vecteezy_woman-mopping-the-floor-for-spring-cleaning-concept_5860249 [Converted] 1.png'
-    ) // for listing ALL files without prefix, pass '' instead
-      .then((result) => setImgUrl(result))
-      .catch((err) => console.log(err))
+    // Storage.get(
+    //   'vecteezy_woman-mopping-the-floor-for-spring-cleaning-concept_5860249 [Converted] 1.png'
+    // ) // for listing ALL files without prefix, pass '' instead
+    //   .then((result) => setImgUrl(result))
+    //   .catch((err) => console.log(err))
+    runAsyncFunc()
   }, [])
 
   return (

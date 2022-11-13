@@ -1,8 +1,8 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import NavBar from '../src/domains/landing-page/components/NavBar'
-import { Amplify } from 'aws-amplify'
-import awsExports from '../src/aws-exports'
+// import { Amplify } from 'aws-amplify'
+// import awsExports from '../src/aws-exports'
 
 // const some: Number = Number(
 //   process.env
@@ -57,7 +57,7 @@ import awsExports from '../src/aws-exports'
 
 // console.log(envVars)
 
-Amplify.configure(awsExports)
+// Amplify.configure(awsExports)
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

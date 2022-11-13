@@ -6,6 +6,8 @@
     "start": "next start"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.209.0",
+    "@aws-sdk/s3-request-presigner": "^3.209.0",
     "aws-amplify": "^4.3.43",
     "next": "latest",
     "react": "18.2.0",
