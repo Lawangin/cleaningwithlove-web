@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import ContainerWrapper from './ContainerWrapper'
 import { getPresignedUrlWithKey } from '../../../services/s3'
+import { LOGO } from '../constants/imageKeys'
 // import awsconfig from '../../../../src/aws-exports'
 
 // logger.debug('awsconfigs', awsconfig)
@@ -9,23 +10,18 @@ import { getPresignedUrlWithKey } from '../../../services/s3'
 const NavBar = (): JSX.Element => {
   const [imgUrl, setImgUrl] = useState<string | undefined>()
 
-  const runAsyncFunc = async () => {
+  const fetchImage = async () => {
     const { error, presignedUrls } = await getPresignedUrlWithKey(
       'publicAssets',
-      'Asset 2.png'
+      LOGO
     )
 
     setImgUrl(presignedUrls)
   }
 
   useEffect(() => {
-    // Storage.get('Asset 2.png')
-    //   .then((result) => setImgUrl(result))
-    //   .catch((err) => {
-    //     return console.log(err)
-    //   })
-    runAsyncFunc()
-  }, [])
+    fetchImage()
+  }, [imgUrl])
 
   return (
     <ContainerWrapper color={'white'}>

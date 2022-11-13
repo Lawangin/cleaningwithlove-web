@@ -1,25 +1,29 @@
 import type { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import Head from 'next/head'
-import { Storage } from 'aws-amplify'
 import ContainerWrapper from '../src/domains/landing-page/components/ContainerWrapper'
-import NavBar from '../src/domains/landing-page/components/NavBar'
 import MainContent from '../src/domains/landing-page/components/MainContent'
 import SecondaryContent from '../src/domains/landing-page/components/SecondaryContent'
 import TertiaryContent from '../src/domains/landing-page/components/TertiaryContent'
 import Footer from '../src/domains/landing-page/components/Footer'
+import { getPresignedUrlWithKey } from '../src/services/s3'
+import { BKG_IMAGE } from '../src/domains/landing-page/constants/imageKeys'
 
 const Home: NextPage = () => {
-  const [imgUrl, setImgUrl] = useState('/vercel.svg')
+  const [imgUrl, setImgUrl] = useState<string | undefined>()
 
-  // useEffect(() => {
-  //   Storage.get('Asset 1.svg') // for listing ALL files without prefix, pass '' instead
-  //     .then((result) => {
-  //       console.log(result)
-  //       return setImgUrl(result)
-  //     })
-  //     .catch((err) => console.log(err))
-  // }, [])
+  const fetchImages = async () => {
+    const { presignedUrls: groupImgUrl } = await getPresignedUrlWithKey(
+      'publicAssets',
+      BKG_IMAGE
+    )
+
+    setImgUrl(groupImgUrl)
+  }
+
+  useEffect(() => {
+    fetchImages()
+  }, [imgUrl])
 
   return (
     <>
@@ -32,7 +36,7 @@ const Home: NextPage = () => {
         <MainContent />
       </ContainerWrapper>
 
-      <ContainerWrapper color={'bg-white'}>
+      <ContainerWrapper color={'bg-white'} bkg={imgUrl}>
         <SecondaryContent />
       </ContainerWrapper>
 

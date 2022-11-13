@@ -1,26 +1,22 @@
 import { useEffect, useState } from 'react'
 import Button from '../../global/components/Button'
 import { getPresignedUrlWithKey } from '../../../services/s3'
+import { WOMAN_CLEANING_IMAGE } from '../constants/imageKeys'
 
 const MainContent = (): JSX.Element => {
   const [imgUrl, setImgUrl] = useState<string | null>()
 
-  const runAsyncFunc = async () => {
+  const fetchImage = async () => {
     const { error, presignedUrls } = await getPresignedUrlWithKey(
       'publicAssets',
-      'vecteezy_woman-mopping-the-floor-for-spring-cleaning-concept_5860249 [Converted] 1.png'
+      WOMAN_CLEANING_IMAGE
     )
     setImgUrl(presignedUrls)
   }
 
   useEffect(() => {
-    // Storage.get(
-    //   'vecteezy_woman-mopping-the-floor-for-spring-cleaning-concept_5860249 [Converted] 1.png'
-    // ) // for listing ALL files without prefix, pass '' instead
-    //   .then((result) => setImgUrl(result))
-    //   .catch((err) => console.log(err))
-    runAsyncFunc()
-  }, [])
+    fetchImage()
+  }, [imgUrl])
 
   return (
     <div className='grid grid-cols-2 grid-rows-1 justify-items-center items-center'>
