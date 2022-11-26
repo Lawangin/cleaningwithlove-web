@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import ContainerWrapper from "./ContainerWrapper";
 import { getPresignedUrlWithKey } from "../../../services/s3";
 import { LOGO } from "../constants/imageKeys";
+import HamburgerMenu from "../../global/components/HamburgerMenu";
 // import awsconfig from '../../../../src/aws-exports'
 
 // logger.debug('awsconfigs', awsconfig)
@@ -33,8 +34,11 @@ const NavBar = (): JSX.Element => {
             <p>Loading...</p>
           )}
         </Link>
-        <div className="flex justify-around items-center">
-          <Link href="/booknow" className="font-sans text-primary">
+        <div className="flex justify-around items-center max-sm:hidden">
+          <Link
+            href="/booknow"
+            className="font-sans text-primary focus:text-secondary"
+          >
             Book Now
           </Link>
           <Link
@@ -55,6 +59,9 @@ const NavBar = (): JSX.Element => {
           >
             About Us
           </Link> */}
+        </div>
+        <div className="sm:hidden">
+          <HamburgerMenu />
         </div>
       </div>
     </ContainerWrapper>

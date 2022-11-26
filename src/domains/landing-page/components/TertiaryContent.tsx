@@ -20,7 +20,7 @@ const TertiaryContent = (): JSX.Element => {
   }, [imgUrl]);
 
   return (
-    <div className="grid gap-2 grid-cols-2 grid-rows-1 justify-items-center">
+    <div className="grid gap-2 grid-cols-2 grid-rows-1 justify-items-center max-sm:grid-cols-1">
       {imgUrl ? (
         <img src={imgUrl} alt="cartoon man vacumming" className="max-w-lg" />
       ) : (

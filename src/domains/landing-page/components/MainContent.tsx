@@ -19,7 +19,7 @@ const MainContent = (): JSX.Element => {
   }, [imgUrl]);
 
   return (
-    <div className="grid grid-cols-2 grid-rows-1 justify-items-center items-center py-8 max-sm:grid-cols-1">
+    <div className="grid grid-cols-2 grid-rows-1 justify-items-center items-center py-8 max-sm:grid-cols-1 px-4">
       <div className="max-w-md">
         <p className="font-sans font-bold text-4xl py-4">
           Cleaning never felt so good
