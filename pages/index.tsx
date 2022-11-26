@@ -8,9 +8,12 @@ import TertiaryContent from '../src/domains/landing-page/components/TertiaryCont
 import Footer from '../src/domains/landing-page/components/Footer'
 import { getPresignedUrlWithKey } from '../src/services/s3'
 import { BKG_IMAGE } from '../src/domains/landing-page/constants/imageKeys'
+import theme from '../src/tailwind-theme'
 
 const Home: NextPage = () => {
   const [imgUrl, setImgUrl] = useState<string | undefined>()
+
+  const { colors }: any = theme
 
   const fetchImages = async () => {
     const { presignedUrls: groupImgUrl } = await getPresignedUrlWithKey(
@@ -32,19 +35,19 @@ const Home: NextPage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
 
-      <ContainerWrapper color={'bg-brandBlueLight'}>
+      <ContainerWrapper color={colors?.brandBlueLight}>
         <MainContent />
       </ContainerWrapper>
 
-      <ContainerWrapper color={'bg-white'} bkg={imgUrl}>
+      <ContainerWrapper color={'white'} bkg={imgUrl}>
         <SecondaryContent />
       </ContainerWrapper>
 
-      <ContainerWrapper color={'bg-brandBlue'}>
+      <ContainerWrapper color={colors?.brandBlue}>
         <TertiaryContent />
       </ContainerWrapper>
 
-      <ContainerWrapper color={'bg-primary'}>
+      <ContainerWrapper color={colors?.primary}>
         <Footer />
       </ContainerWrapper>
     </>

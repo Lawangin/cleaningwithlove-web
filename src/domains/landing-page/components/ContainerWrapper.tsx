@@ -1,16 +1,21 @@
-import { Component, CSSProperties, ReactNode } from 'react'
+import { ReactNode } from 'react'
 
 interface IProps {
   children?: ReactNode
   color?: string
   bkg?: string
+  styling?: string
 }
-const ContainerWrapper = ({ color, children, bkg }: IProps) => {
+const ContainerWrapper = ({ color, children, bkg, styling = '' }: IProps) => {
+  console.log(bkg)
+  const styles = {
+    backgroundColor: !color ? 'white' : color,
+    backgroundImage: bkg ? `url(${bkg})` : ''
+  }
+  // const bkgColor = !color ? 'bg-slate-400' : color
+  // const bkgImg = bkg ? { backgroundImage: `url(${bkg})` } : {}
   return (
-    <section
-      className={!color ? 'bg-slate-400' : color}
-      style={{ backgroundImage: `url(${bkg})` }}
-    >
+    <section style={styles} className={styling}>
       <div className='max-w-screen-xl mx-auto'>{children}</div>
     </section>
   )
