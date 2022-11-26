@@ -1,64 +1,64 @@
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
-import ContainerWrapper from './ContainerWrapper'
-import { getPresignedUrlWithKey } from '../../../services/s3'
-import { LOGO } from '../constants/imageKeys'
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import ContainerWrapper from "./ContainerWrapper";
+import { getPresignedUrlWithKey } from "../../../services/s3";
+import { LOGO } from "../constants/imageKeys";
 // import awsconfig from '../../../../src/aws-exports'
 
 // logger.debug('awsconfigs', awsconfig)
 
 const NavBar = (): JSX.Element => {
-  const [imgUrl, setImgUrl] = useState<string | undefined>()
+  const [imgUrl, setImgUrl] = useState<string | undefined>();
 
   const fetchImage = async () => {
     const { error, presignedUrls } = await getPresignedUrlWithKey(
-      'publicAssets',
+      "publicAssets",
       LOGO
-    )
+    );
 
-    setImgUrl(presignedUrls)
-  }
+    setImgUrl(presignedUrls);
+  };
 
   useEffect(() => {
-    fetchImage()
-  }, [imgUrl])
+    fetchImage();
+  }, [imgUrl]);
 
   return (
-    <ContainerWrapper color={'white'}>
-      <div className='grid grid-cols-2 grid-rows-1'>
-        <Link href='/' className='w-20'>
+    <ContainerWrapper color={"white"}>
+      <div className="grid grid-cols-2 grid-rows-1">
+        <Link href="/" className="w-20">
           {imgUrl ? (
-            <img src={imgUrl} alt='cleaning with love logo' />
+            <img src={imgUrl} alt="cleaning with love logo" />
           ) : (
             <p>Loading...</p>
           )}
         </Link>
-        <div className='grid grid-cols-4 grid-rows-1 justify-items-center items-center'>
-          <Link href='/booknow' className='font-sans text-primary'>
+        <div className="flex justify-around items-center">
+          <Link href="/booknow" className="font-sans text-primary">
             Book Now
           </Link>
           <Link
-            href='/'
-            className='font-sans hover:text-tertiary focus:text-secondary focus:font-semibold'
+            href="/"
+            className="font-sans hover:text-tertiary focus:text-secondary focus:font-semibold"
           >
             Home
           </Link>
           <Link
-            href='/aboutus'
-            className='font-sans hover:text-secondary focus:text-secondary focus:font-semibold'
-          >
-            About Us
-          </Link>
-          <Link
-            href='/faq'
-            className='font-sans hover:text-tertiary focus:text-secondary focus:font-semibold'
+            href="/faq"
+            className="font-sans hover:text-tertiary focus:text-secondary focus:font-semibold"
           >
             FAQ
           </Link>
+          {/* <Link
+            href="/aboutus"
+            className="font-sans hover:text-secondary focus:text-secondary focus:font-semibold"
+          >
+            About Us
+          </Link> */}
         </div>
       </div>
     </ContainerWrapper>
-  )
-}
+  );
+};
 
-export default NavBar
+export default NavBar;

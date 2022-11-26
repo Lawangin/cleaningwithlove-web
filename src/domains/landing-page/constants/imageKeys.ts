@@ -2,3 +2,4 @@ export const WOMAN_CLEANING_IMAGE: string = 'vecteezy_woman-mopping-the-floor-fo
 export const LOGO: string = 'Asset 2.png'
 export const BKG_IMAGE: string = 'MaskGroupImage.png'
 export const GROUP_CLEANING: string = 'group-clean.jpg'
+export const CLEANING_GUY_IMAGE: string = 'cleaning-guy-vaccum.png'
