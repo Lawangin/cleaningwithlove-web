@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import PersonalInformationForm from '../src/domains/booking-experience/components/PersonalInformationForm'
 
 const BookNow: NextPage = () => {
   return (
@@ -8,7 +9,9 @@ const BookNow: NextPage = () => {
         <title>CWL - Book Now</title>
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <h1>Book Now Page</h1>
+      <div className='pt-24 flex flex-col items-center'>
+        <PersonalInformationForm />
+      </div>
     </>
   )
 }

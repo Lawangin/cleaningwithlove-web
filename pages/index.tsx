@@ -39,11 +39,15 @@ const Home: NextPage = () => {
         <MainContent />
       </ContainerWrapper>
 
-      <ContainerWrapper color={'white'} bkg={imgUrl}>
+      {/* <ContainerWrapper color={'white'} bkg={imgUrl}>
+        <SecondaryContent />
+      </ContainerWrapper> */}
+
+      <ContainerWrapper color={colors?.primary}>
         <SecondaryContent />
       </ContainerWrapper>
 
-      <ContainerWrapper color={colors?.brandBlue}>
+      <ContainerWrapper color={colors?.brandBlueLight}>
         <TertiaryContent />
       </ContainerWrapper>
 

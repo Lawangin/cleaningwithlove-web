@@ -1,0 +1,4 @@
+
+.filterPrimary {
+  filter: invert(20%) sepia(53%) saturate(2983%) hue-rotate(251deg) brightness(87%) contrast(99%);
+}
