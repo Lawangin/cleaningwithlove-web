@@ -1,6 +1,7 @@
 import { Formik, Field, Form, FormikHelpers } from "formik";
 import Button from "../../global/components/Button";
 import CustomInputComponent from "../../global/components/CustomInputComponent";
+import FormCounter from "./FormCounter";
 
 interface Values {
   firstName: string;
@@ -8,11 +9,11 @@ interface Values {
   email: string;
 }
 
-const PersonalInformationForm = (): JSX.Element => {
+const CleaningInformationForm = (): JSX.Element => {
   return (
     <div>
       <h3>Book Now and get same day response!</h3>
-      <h3>2. Personal Information</h3>
+      <h3>1. Cleaning Information</h3>
       <Formik
         initialValues={{
           firstName: "",
@@ -33,25 +34,24 @@ const PersonalInformationForm = (): JSX.Element => {
           {/* <label htmlFor='firstName'>First Name</label> */}
           <div className="flex flex-col">
             <div className="flex justify-between py-2">
-              <div className="mr-1 w-full">
-                <Field
-                  id="firstName"
-                  name="firstName"
-                  placeholder="First Name"
-                  as={CustomInputComponent}
-                />
+              <div className="mr-1">
+                <FormCounter label={"Bedrooms"} />
               </div>
 
-              <div className="ml-1 w-full">
-                <Field
-                  id="lastName"
-                  name="lastName"
-                  placeholder="Last Name"
-                  as={CustomInputComponent}
-                />
+              <div className="ml-1">
+                <FormCounter label={"Bathrooms"} />
               </div>
             </div>
 
+            <div className="flex justify-between py-2">
+              <div className="mr-1">
+                <FormCounter label={"Livingrooms"} />
+              </div>
+
+              <div className="ml-1">
+                <FormCounter label={"Kitchens"} />
+              </div>
+            </div>
             <div className="py-2 w-full">
               <Field
                 id="email"
@@ -70,37 +70,6 @@ const PersonalInformationForm = (): JSX.Element => {
                 as={CustomInputComponent}
               />
             </div>
-
-            <div className="flex py-2">
-              <div className="">
-                <Field
-                  id="city"
-                  name="city"
-                  placeholder="City"
-                  as={CustomInputComponent}
-                />
-              </div>
-              <div className="px-2">
-                <Field
-                  id="state"
-                  as="select"
-                  name="state"
-                  className="py-2 rounded-md"
-                >
-                  <option value="red">Red</option>
-                  <option value="green">Green</option>
-                  <option value="blue">Blue</option>
-                </Field>
-              </div>
-              <div className="">
-                <Field
-                  id="zipcode"
-                  name="zipcode"
-                  placeholder="Zip Code"
-                  as={CustomInputComponent}
-                />
-              </div>
-            </div>
           </div>
           <Button type="submit" className="flex flex-row-reverse">
             Next
@@ -111,4 +80,4 @@ const PersonalInformationForm = (): JSX.Element => {
   );
 };
 
-export default PersonalInformationForm;
+export default CleaningInformationForm;
