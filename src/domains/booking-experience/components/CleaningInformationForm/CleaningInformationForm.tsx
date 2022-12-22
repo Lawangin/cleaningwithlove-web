@@ -72,13 +72,13 @@ const CleaningInformationForm = (): JSX.Element => {
                 />
               </div>
             </div>
-            <div className="grid gap-4 grid-cols-2 py-4">
+            <div className="grid gap-4 grid-cols-2 py-4 justify-items-start">
               <Checkbox label="Clean Inside Fridge" price="40" />
-              <Checkbox label="Clean Inside Fridge" price="40" />
-              <Checkbox label="Clean Inside Fridge" price="40" />
-              <Checkbox label="Clean Inside Fridge" price="40" />
-              <Checkbox label="Clean Inside Fridge" price="40" />
-              <Checkbox label="Clean Inside Fridge" price="40" />
+              <Checkbox label="Clean Inside Oven" price="40" />
+              <Checkbox label="Deep Clean" price="40" />
+              <Checkbox label="Laundry" price="40" />
+              <Checkbox label="Dishes" price="30" />
+              <Checkbox label="Assemble Furniture (1 hr)" price="60" />
             </div>
           </div>
           <PriceQuoteLabel />
