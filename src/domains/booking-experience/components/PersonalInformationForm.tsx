@@ -1,6 +1,7 @@
 import { Formik, Field, Form, FormikHelpers } from "formik";
 import Button from "../../global/components/Button";
 import CustomInputComponent from "../../global/components/CustomInputComponent";
+import { useBookingContext } from "../context/BookingContext";
 
 interface Values {
   firstName: string;
@@ -9,9 +10,16 @@ interface Values {
 }
 
 const PersonalInformationForm = (): JSX.Element => {
+  const { setPageName } = useBookingContext();
+
+  const handleClick = (e: any): void => {
+    setPageName("reviewAndBook");
+    e.preventDefault();
+  };
+
   return (
     <div>
-      <h3>Book Now and get same day response!</h3>
+      <h3 className="py-4">Book Now and get same day response!</h3>
       <h3>2. Personal Information</h3>
       <Formik
         initialValues={{
@@ -31,7 +39,7 @@ const PersonalInformationForm = (): JSX.Element => {
       >
         <Form>
           {/* <label htmlFor='firstName'>First Name</label> */}
-          <div className="flex flex-col">
+          <div className="flex flex-col max-w-lg py-4">
             <div className="flex justify-between py-2">
               <div className="mr-1 w-full">
                 <Field
@@ -102,7 +110,11 @@ const PersonalInformationForm = (): JSX.Element => {
               </div>
             </div>
           </div>
-          <Button type="submit" className="flex flex-row-reverse">
+          <Button
+            type="submit"
+            className="flex flex-row-reverse"
+            onClick={(e) => handleClick(e)}
+          >
             Next
           </Button>
         </Form>

@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import BookingTunnel from "../src/domains/booking-experience/components/BookingTunnel";
 import BreadCrumb from "../src/domains/booking-experience/components/BreadCrumb/BreadCrumb";
-import CleaningInformationForm from "../src/domains/booking-experience/components/CleaningInformationForm";
-import PersonalInformationForm from "../src/domains/booking-experience/components/PersonalInformationForm";
+import { BookingProvider } from "../src/domains/booking-experience/context/BookingContext";
 
 const BookNow: NextPage = () => {
   return (
@@ -12,13 +12,14 @@ const BookNow: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="pt-24 flex flex-col items-center">
-        <div className="p-4">
-          <BreadCrumb />
+      <BookingProvider>
+        <div className="pt-24 flex flex-col items-center">
+          <div className="p-4">
+            <BreadCrumb />
+          </div>
+          <BookingTunnel />
         </div>
-        <CleaningInformationForm />
-        <PersonalInformationForm />
-      </div>
+      </BookingProvider>
     </>
   );
 };
