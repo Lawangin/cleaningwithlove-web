@@ -32,39 +32,30 @@ const SecondaryContent = (): JSX.Element => {
         </p>
         <div className='grid grid-cols-2 grid-rows-1 gap-16 px-4 items-center max-sm:grid-cols-1'>
           <img src={largeImg} className='rounded-3xl drop-shadow-sm' />
-          <ul className='list-disc mx-16 max-sm:mx-2'>
-            <li className='py-2'>
-              We are well experienced in the art of cleaning and consistently
-              improving our process.
-            </li>
-            <li className='py-2'>
-              We are well experienced in the art of cleaning and consistently
-              improving our process.
-            </li>
-            <li className='py-2'>
-              We are well experienced in the art of cleaning and consistently
-              improving our process.
-            </li>
-          </ul>
+          <p className='w-3/4'>
+            Studies have shown that a clean and organized environment can have a
+            positive impact on mental health, particularly for people who
+            struggle with anxiety, depression, or other mental health
+            conditions. By taking care of the cleaning tasks that can be
+            overwhelming or stressful, we can help you create a peaceful and
+            relaxing space in your home.
+          </p>
         </div>
       </div>
       <div className='grid gap-4 grid-cols-3 grid-rows-1 place-items-center mt-8 mb-16 max-sm:grid-cols-1'>
         <Card
           header={['Experienced', 'Cleaners']}
-          body='We are well experienced in the art of cleaning and consistently
-            improving our process.'
+          body='Our professional house cleaning team has the experience and expertise to leave your home spotless and stress-free.'
           img={manyCleansImg}
         />
         <Card
           header={['Great', 'Service']}
-          body='We are well experienced in the art of cleaning and consistently
-            improving our process.'
+          body='Our top priority is providing excellent service and delivering a clean and sparkling home that exceeds your expectations.'
           img={serviceImg}
         />
         <Card
           header={['Cost', 'Effective']}
-          body='We are well experienced in the art of cleaning and consistently
-            improving our process.'
+          body='We offer competitive pricing and flexible service options to make our professional house cleaning services cost effective for your budget and needs.'
           img={costImg}
         />
       </div>
