@@ -1,12 +1,14 @@
 interface IProps {
   label: string;
   price?: string;
+  checked?: boolean;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Checkbox = ({ label, price }: IProps): JSX.Element => {
+const Checkbox = ({ label, price, checked, onChange }: IProps): JSX.Element => {
   // to add check, just pass checked into input className
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center py-2">
       <div>
         <div className="form-check">
           <input
@@ -14,6 +16,8 @@ const Checkbox = ({ label, price }: IProps): JSX.Element => {
             type="checkbox"
             value=""
             id="flexCheckDefault"
+            checked={checked}
+            onChange={onChange}
           />
           <label
             className="form-check-label inline-block text-gray-800"
