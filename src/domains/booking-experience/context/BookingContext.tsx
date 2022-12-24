@@ -1,58 +1,59 @@
-import { createContext, ReactNode, useContext, useState } from "react";
+import { createContext, ReactNode, useContext, useState } from 'react'
 
 interface ITime {
-  hour: number;
-  minute: number;
-  amOrPm: string;
+  hour: number
+  minute: number
+  amOrPm: string
 }
 
 interface IExtras {
-  fridge: boolean;
-  oven: boolean;
-  deepClean: boolean;
-  laundry: boolean;
-  dishes: boolean;
-  furniture: boolean;
+  [key: string]: boolean
+  fridge: boolean
+  oven: boolean
+  deepClean: boolean
+  laundry: boolean
+  dishes: boolean
+  furniture: boolean
 }
 
 interface ICleaningData {
-  [key: string]: number | string | IExtras | ITime | Date;
-  price: number;
-  bedrooms: number;
-  bathrooms: number;
-  livingrooms: number;
-  kitchens: number;
-  date: Date;
-  time: ITime;
-  extras: IExtras;
+  [key: string]: number | string | IExtras | ITime | Date
+  price: number
+  bedrooms: number
+  bathrooms: number
+  livingrooms: number
+  kitchens: number
+  date: Date
+  time: ITime
+  extras: IExtras
 }
 
 interface IPersonalData {
-  firstName: string;
-  lastName: string;
-  email: string;
-  street: string;
-  city: string;
-  state: string;
-  zipcode: number;
+  firstName: string
+  lastName: string
+  email: string
+  street: string
+  city: string
+  state: string
+  zipcode: number
+  phone: number
 }
 
 interface PageNameContextType {
-  pageName: string;
-  setPageName: (pageName: string) => void;
-  cleaningData: ICleaningData;
-  setCleaningData: (cleaningData: ICleaningData) => void;
-  personalData: IPersonalData;
-  setPersonalData: (personalData: IPersonalData) => void;
-  calculatePrice: () => void;
+  pageName: string
+  setPageName: (pageName: string) => void
+  cleaningData: ICleaningData
+  setCleaningData: (cleaningData: ICleaningData) => void
+  personalData: IPersonalData
+  setPersonalData: (personalData: IPersonalData) => void
 }
 
 interface IProps {
-  children: ReactNode;
+  children: ReactNode
 }
 
 const BookingContext = createContext<PageNameContextType>({
-  pageName: "",
+  pageName: '',
   setPageName: () => {},
   cleaningData: {
     price: 0,
@@ -64,7 +65,7 @@ const BookingContext = createContext<PageNameContextType>({
     time: {
       hour: 0,
       minute: 0,
-      amOrPm: "AM",
+      amOrPm: 'AM'
     },
     extras: {
       fridge: false,
@@ -72,25 +73,25 @@ const BookingContext = createContext<PageNameContextType>({
       deepClean: false,
       laundry: false,
       dishes: false,
-      furniture: false,
-    },
+      furniture: false
+    }
   },
   setCleaningData: () => {},
   personalData: {
-    firstName: "",
-    lastName: "",
-    email: "",
-    street: "",
-    city: "",
-    state: "",
+    firstName: '',
+    lastName: '',
+    email: '',
+    street: '',
+    city: '',
+    state: '',
     zipcode: 0,
+    phone: 0
   },
-  setPersonalData: () => {},
-  calculatePrice: () => {},
-});
+  setPersonalData: () => {}
+})
 
 const BookingProvider = ({ children }: IProps): JSX.Element => {
-  const [pageName, setPageName] = useState("cleaningInformation");
+  const [pageName, setPageName] = useState('cleaningInformation')
   const [cleaningData, setCleaningData] = useState({
     price: 0,
     bedrooms: 0,
@@ -101,7 +102,7 @@ const BookingProvider = ({ children }: IProps): JSX.Element => {
     time: {
       hour: 0,
       minute: 0,
-      amOrPm: "AM",
+      amOrPm: 'AM'
     },
     extras: {
       fridge: false,
@@ -109,44 +110,19 @@ const BookingProvider = ({ children }: IProps): JSX.Element => {
       deepClean: false,
       laundry: false,
       dishes: false,
-      furniture: false,
-    },
-  });
+      furniture: false
+    }
+  })
   const [personalData, setPersonalData] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    street: "",
-    city: "",
-    state: "",
+    firstName: '',
+    lastName: '',
+    email: '',
+    street: '',
+    city: '',
+    state: '',
     zipcode: 0,
-  });
-
-  const calculatePrice = () => {
-    let price = 0;
-    price =
-      cleaningData.bedrooms * 25 +
-      cleaningData.bathrooms * 30 +
-      cleaningData.livingrooms * 30 +
-      cleaningData.kitchens * 30;
-
-    const { extras } = cleaningData;
-    const { fridge, oven, deepClean, laundry, dishes, furniture } = extras;
-
-    price =
-      price +
-      (fridge ? 40 : 0) +
-      (oven ? 40 : 0) +
-      (deepClean ? 40 : 0) +
-      (laundry ? 40 : 0) +
-      (dishes ? 30 : 0) +
-      (furniture ? 60 : 0);
-
-    setCleaningData({
-      ...cleaningData,
-      price: price,
-    });
-  };
+    phone: 0
+  })
 
   return (
     <BookingContext.Provider
@@ -156,15 +132,14 @@ const BookingProvider = ({ children }: IProps): JSX.Element => {
         cleaningData,
         setCleaningData,
         personalData,
-        setPersonalData,
-        calculatePrice,
+        setPersonalData
       }}
     >
       {children}
     </BookingContext.Provider>
-  );
-};
+  )
+}
 
-const useBookingContext = () => useContext(BookingContext);
+const useBookingContext = () => useContext(BookingContext)
 
-export { BookingProvider, useBookingContext };
+export { BookingProvider, useBookingContext }

@@ -16,6 +16,7 @@ const PersonalInformationForm = (): JSX.Element => {
   const [city, setCity] = useState(personalData.city)
   const [state, setState] = useState(personalData.state)
   const [zipcode, setZipcode] = useState(personalData.zipcode)
+  const [phone, setPhone] = useState(personalData.phone)
 
   const handleClick = (e: any): void => {
     setPageName('reviewAndBook')
@@ -27,7 +28,8 @@ const PersonalInformationForm = (): JSX.Element => {
       street: street,
       city: city,
       state: state,
-      zipcode: zipcode
+      zipcode: +zipcode,
+      phone: +phone
     })
     e.preventDefault()
   }
@@ -50,7 +52,7 @@ const PersonalInformationForm = (): JSX.Element => {
       >
         <Form>
           {/* <label htmlFor='firstName'>First Name</label> */}
-          <div className='flex flex-col max-w-lg py-4'>
+          <div className='flex flex-col py-4'>
             <div className='flex justify-between py-2'>
               <div className='mr-1 w-full'>
                 <Field
@@ -140,11 +142,23 @@ const PersonalInformationForm = (): JSX.Element => {
                   placeholder='Zip Code'
                   as={CustomInputComponent}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setZipcode(+e.target.value.toString())
+                    setZipcode(+e.target.value)
                   }
                   value={zipcode !== 0 ? zipcode : ''}
                 />
               </div>
+            </div>
+            <div className='py-2 w-full'>
+              <Field
+                id='phone'
+                name='phone'
+                placeholder='Phone Number'
+                as={CustomInputComponent}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setPhone(+e.target.value)
+                }
+                value={phone !== 0 ? phone.toString() : ''}
+              />
             </div>
           </div>
           <Button
