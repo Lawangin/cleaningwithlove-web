@@ -3,10 +3,16 @@ import Button from '../../global/components/Button'
 import { useBookingContext } from '../context/BookingContext'
 
 const ReviewInformation = (): JSX.Element => {
-  const { cleaningData, personalData } = useBookingContext()
+  const { cleaningData, personalData, setPageName } = useBookingContext()
 
-  const handleClick = (e: React.MouseEvent) => {
+  const handleSubmit = (e: React.MouseEvent) => {
     return
+  }
+
+  const handleBack = (e: React.MouseEvent): void => {
+    setPageName('personalInformation')
+
+    e.preventDefault()
   }
 
   const rooms = ['bedrooms', 'bathrooms', 'livingrooms', 'kitchens']
@@ -17,23 +23,21 @@ const ReviewInformation = (): JSX.Element => {
     }
   })
 
-  let extraLabels = []
-  for (const property in cleaningData.extras) {
-    const extras = cleaningData.extras
-    if (extras[property]) {
-      property === 'fridge' ? extraLabels.push('+ Clean Inside Fridge') : null
-      property === 'oven' ? extraLabels.push('+ Clean Inside Oven') : null
-      property === 'deepClean' ? extraLabels.push('+ Deep Clean') : null
-      property === 'laundry' ? extraLabels.push('+ Laundry') : null
-      property === 'dishes' ? extraLabels.push('+ Dishes') : null
-      property === 'furniture'
-        ? extraLabels.push('+ Assemble Furniture (1hr)')
-        : null
-    }
+  const labelsByProperty: { [key: string]: string } = {
+    fridge: '+ Clean Inside Fridge',
+    oven: '+ Clean Inside Oven',
+    deepClean: '+ Deep Clean',
+    laundry: '+ Laundry',
+    dishes: '+ Dishes',
+    furniture: '+ Assemble Furniture (1hr)'
   }
 
+  const extraLabels: string[] = Object.entries(cleaningData.extras)
+    .filter(([_, value]) => value)
+    .map(([property]) => labelsByProperty[property])
+
   return (
-    <div className='w-full'>
+    <div className='w-[32rem]'>
       <h3 className='py-4'>Book Now and get same day response!</h3>
       <h3>3. Review and Book</h3>
       <section className='py-4 grid grid-cols-1 gap-4'>
@@ -92,13 +96,23 @@ const ReviewInformation = (): JSX.Element => {
           <p className='text-gray-400'>Rough Estimate</p>
           <p>${cleaningData.price}.00</p>
         </div>
-        <Button
-          type='submit'
-          className='flex flex-row-reverse'
-          onClick={(e) => handleClick(e)}
-        >
-          Submit
-        </Button>
+        <div className='flex flex-row-reverse py-4'>
+          <Button
+            type='submit'
+            className='px-2 min-w-[7rem]'
+            onClick={(e) => handleSubmit(e)}
+          >
+            Submit
+          </Button>
+          <Button
+            type='submit'
+            className='px-2'
+            onClick={(e) => handleBack(e)}
+            style='secondary'
+          >
+            Back
+          </Button>
+        </div>
       </section>
     </div>
   )

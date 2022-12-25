@@ -1,8 +1,8 @@
 import { createContext, ReactNode, useContext, useState } from 'react'
 
 interface ITime {
-  hour: number
-  minute: number
+  hour: string
+  minute: string
   amOrPm: string
 }
 
@@ -63,8 +63,8 @@ const BookingContext = createContext<PageNameContextType>({
     kitchens: 0,
     date: new Date(),
     time: {
-      hour: 0,
-      minute: 0,
+      hour: '00',
+      minute: '00',
       amOrPm: 'AM'
     },
     extras: {
@@ -83,7 +83,7 @@ const BookingContext = createContext<PageNameContextType>({
     email: '',
     street: '',
     city: '',
-    state: '',
+    state: 'VA',
     zipcode: 0,
     phone: 0
   },
@@ -100,8 +100,8 @@ const BookingProvider = ({ children }: IProps): JSX.Element => {
     kitchens: 0,
     date: new Date(),
     time: {
-      hour: 0,
-      minute: 0,
+      hour: '00',
+      minute: '00',
       amOrPm: 'AM'
     },
     extras: {
@@ -119,7 +119,7 @@ const BookingProvider = ({ children }: IProps): JSX.Element => {
     email: '',
     street: '',
     city: '',
-    state: '',
+    state: 'VA',
     zipcode: 0,
     phone: 0
   })

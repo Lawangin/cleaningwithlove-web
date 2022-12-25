@@ -1,13 +1,23 @@
 import { Formik, Field, Form, FormikHelpers } from 'formik'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import Button from '../../global/components/Button'
 import CustomInputComponent from '../../global/components/CustomInputComponent'
+import ErrorBar from '../../global/components/ErrorBar'
 import { useBookingContext } from '../context/BookingContext'
+import {
+  validateCity,
+  validateEmail,
+  validateFirstName,
+  validateLastName,
+  validatePhoneNumber,
+  validateZipcode
+} from '../helpers/validationSchemas'
 
 interface Values {}
 
 const PersonalInformationForm = (): JSX.Element => {
   const { setPageName, personalData, setPersonalData } = useBookingContext()
+  const [error, setError] = useState('')
 
   const [firstName, setFirstName] = useState(personalData.firstName)
   const [lastName, setLastName] = useState(personalData.lastName)
@@ -18,7 +28,23 @@ const PersonalInformationForm = (): JSX.Element => {
   const [zipcode, setZipcode] = useState(personalData.zipcode)
   const [phone, setPhone] = useState(personalData.phone)
 
-  const handleClick = (e: any): void => {
+  const handleNext = async (e: React.MouseEvent) => {
+    e.preventDefault()
+
+    try {
+      // Validate the input value
+      await validateFirstName.validateSync({ firstName }, { abortEarly: false })
+      await validateLastName.validateSync({ lastName }, { abortEarly: false })
+      await validateEmail.validateSync({ email: email }, { abortEarly: false })
+      await validateCity.validateSync({ city }, { abortEarly: false })
+      await validateZipcode.validateSync({ zipcode }, { abortEarly: false })
+      await validatePhoneNumber.validateSync({ phone }, { abortEarly: false })
+      setError('')
+    } catch (error: any) {
+      setError(error.errors[0])
+      return null
+    }
+
     setPageName('reviewAndBook')
     setPersonalData({
       ...personalData,
@@ -31,11 +57,87 @@ const PersonalInformationForm = (): JSX.Element => {
       zipcode: +zipcode,
       phone: +phone
     })
+  }
+
+  const handleBack = (e: React.MouseEvent): void => {
+    setPageName('cleaningInformation')
     e.preventDefault()
+  }
+
+  const handleFirstNameBlur = () => {
+    try {
+      // Validate the input value
+      validateFirstName.validateSync(
+        { firstName: firstName },
+        { abortEarly: false }
+      )
+      setError('')
+    } catch (error: any) {
+      console.log(error)
+      setError(error.errors[0])
+    }
+  }
+
+  const handleLastNameBlur = () => {
+    try {
+      // Validate the input value
+      validateLastName.validateSync(
+        { lastName: lastName },
+        { abortEarly: false }
+      )
+      setError('')
+    } catch (error: any) {
+      setError(error.errors[0])
+    }
+  }
+
+  const handleEmailBlur = () => {
+    try {
+      // Validate the input value
+      validateEmail.validateSync({ email: email }, { abortEarly: false })
+      setError('')
+    } catch (error: any) {
+      setError(error.errors[0])
+    }
+  }
+
+  const handlePhoneBlur = () => {
+    try {
+      // Validate the input value
+      validatePhoneNumber.validateSync({ phone: phone }, { abortEarly: false })
+      setError('')
+    } catch (error: any) {
+      setError(error.errors[0])
+    }
+  }
+
+  const handleCityBlur = () => {
+    try {
+      // Validate the input value
+      validateCity.validateSync({ city: city }, { abortEarly: false })
+      setError('')
+    } catch (error: any) {
+      setError(error.errors[0])
+    }
+  }
+
+  const handleZipBlur = () => {
+    try {
+      // Validate the input value
+      validateZipcode.validateSync({ zipcode: zipcode }, { abortEarly: false })
+      setError('')
+    } catch (error: any) {
+      setError(error.errors[0])
+    }
   }
 
   return (
     <div>
+      {error && (
+        <div onClick={() => alert(error)}>
+          <ErrorBar errorMessage={error} />
+        </div>
+      )}
       <h3 className='py-4'>Book Now and get same day response!</h3>
       <h3>2. Personal Information</h3>
       <Formik
@@ -60,6 +162,7 @@ const PersonalInformationForm = (): JSX.Element => {
                   name='firstName'
                   placeholder='First Name'
                   as={CustomInputComponent}
+                  onBlur={handleFirstNameBlur}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     setFirstName(e.target.value)
                   }
@@ -73,6 +176,7 @@ const PersonalInformationForm = (): JSX.Element => {
                   name='lastName'
                   placeholder='Last Name'
                   as={CustomInputComponent}
+                  onBlur={handleLastNameBlur}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     setLastName(e.target.value)
                   }
@@ -88,6 +192,7 @@ const PersonalInformationForm = (): JSX.Element => {
                 placeholder='Email, john@acme.com'
                 type='email'
                 as={CustomInputComponent}
+                onBlur={handleEmailBlur}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setEmail(e.target.value)
                 }
@@ -115,6 +220,7 @@ const PersonalInformationForm = (): JSX.Element => {
                   name='city'
                   placeholder='City'
                   as={CustomInputComponent}
+                  onBlur={handleCityBlur}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     setCity(e.target.value)
                   }
@@ -130,7 +236,7 @@ const PersonalInformationForm = (): JSX.Element => {
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     setState(e.target.value)
                   }
-                  defaultValue={state}
+                  value={state}
                 >
                   <option value='VA'>VA</option>
                 </Field>
@@ -141,6 +247,7 @@ const PersonalInformationForm = (): JSX.Element => {
                   name='zipcode'
                   placeholder='Zip Code'
                   as={CustomInputComponent}
+                  onBlur={handleZipBlur}
                   onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                     setZipcode(+e.target.value)
                   }
@@ -154,6 +261,7 @@ const PersonalInformationForm = (): JSX.Element => {
                 name='phone'
                 placeholder='Phone Number'
                 as={CustomInputComponent}
+                onBlur={handlePhoneBlur}
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                   setPhone(+e.target.value)
                 }
@@ -161,13 +269,23 @@ const PersonalInformationForm = (): JSX.Element => {
               />
             </div>
           </div>
-          <Button
-            type='submit'
-            className='flex flex-row-reverse'
-            onClick={(e) => handleClick(e)}
-          >
-            Next
-          </Button>
+          <div className='flex flex-row-reverse'>
+            <Button
+              type='submit'
+              className='px-2 min-w-[7rem]'
+              onClick={(e) => handleNext(e)}
+            >
+              Next
+            </Button>
+            <Button
+              type='submit'
+              className='px-2'
+              onClick={(e) => handleBack(e)}
+              style='secondary'
+            >
+              Back
+            </Button>
+          </div>
         </Form>
       </Formik>
     </div>

@@ -40,38 +40,43 @@ const CleaningInformationForm = (): JSX.Element => {
     e.preventDefault()
   }
 
-  const handleCheckChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCheckChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setIsFridgeChecked(e.target.checked)
-    console.log(cleaningData.price)
   }
 
-  const handleOvenChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleOvenChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setIsOvenChecked(e.target.checked)
   }
 
-  const handleDeepCleanChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleDeepCleanChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     setIsDeepCleanChecked(e.target.checked)
   }
 
-  const handleLaundryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleLaundryChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     setIsLaundryChecked(e.target.checked)
   }
 
-  const handleDishesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleDishesChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
     setIsDishedChecked(e.target.checked)
   }
 
-  const handleAssembleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleAssembleChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ): void => {
     setIsAssembledChecked(e.target.checked)
   }
 
   const calculatePrice = () => {
     let price = 0
     price =
-      cleaningData.bedrooms * 25 +
-      cleaningData.bathrooms * 30 +
-      cleaningData.livingrooms * 30 +
-      cleaningData.kitchens * 30
+      cleaningData.bedrooms * 40 +
+      cleaningData.bathrooms * 50 +
+      cleaningData.livingrooms * 40 +
+      cleaningData.kitchens * 50
 
     return (price =
       price +
