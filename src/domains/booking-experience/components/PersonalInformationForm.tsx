@@ -33,12 +33,15 @@ const PersonalInformationForm = (): JSX.Element => {
 
     try {
       // Validate the input value
-      await validateFirstName.validateSync({ firstName }, { abortEarly: false })
-      await validateLastName.validateSync({ lastName }, { abortEarly: false })
-      await validateEmail.validateSync({ email: email }, { abortEarly: false })
-      await validateCity.validateSync({ city }, { abortEarly: false })
-      await validateZipcode.validateSync({ zipcode }, { abortEarly: false })
-      await validatePhoneNumber.validateSync({ phone }, { abortEarly: false })
+      await Promise.all([
+        validateFirstName.validateSync({ firstName }, { abortEarly: false }),
+        validateLastName.validateSync({ lastName }, { abortEarly: false }),
+        validateEmail.validateSync({ email: email }, { abortEarly: false }),
+        validateCity.validateSync({ city }, { abortEarly: false }),
+        validateZipcode.validateSync({ zipcode }, { abortEarly: false }),
+        validatePhoneNumber.validateSync({ phone }, { abortEarly: false })
+      ])
+
       setError('')
     } catch (error: any) {
       setError(error.errors[0])

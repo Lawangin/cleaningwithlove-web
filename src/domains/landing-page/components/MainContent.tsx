@@ -1,27 +1,30 @@
-import { useEffect, useState } from "react";
-import Button from "../../global/components/Button";
-import { getPresignedUrlWithKey } from "../../../services/s3";
-import { WOMAN_CLEANING_IMAGE } from "../constants/imageKeys";
+import { useEffect, useState } from 'react'
+import Button from '../../global/components/Button'
+import { getPresignedUrlWithKey } from '../../../services/s3'
+import { WOMAN_CLEANING_IMAGE } from '../constants/imageKeys'
+import { TinyPNG } from 'tinypng'
+
+const client = new TinyPNG(process.env.NEXT_PUBLIC_TINY_SECRET || '')
 
 const MainContent = (): JSX.Element => {
-  const [imgUrl, setImgUrl] = useState<string | null>();
+  const [imgUrl, setImgUrl] = useState<string | null>()
 
   const fetchImage = async () => {
     const { error, presignedUrls } = await getPresignedUrlWithKey(
-      "publicAssets",
+      'publicAssets',
       WOMAN_CLEANING_IMAGE
-    );
-    setImgUrl(presignedUrls);
-  };
+    )
+    setImgUrl(presignedUrls)
+  }
 
   useEffect(() => {
-    fetchImage();
-  }, [imgUrl]);
+    fetchImage()
+  }, [imgUrl])
 
   return (
-    <div className="grid grid-cols-2 grid-rows-1 justify-items-center items-center py-8 pt-16 max-sm:grid-cols-1 max-sm:px-4 max-sm:pt-24">
-      <div className="max-w-md">
-        <p className="font-sans font-bold text-4xl py-4">
+    <div className='grid grid-cols-2 grid-rows-1 justify-items-center items-center py-8 pt-16 max-sm:grid-cols-1 max-sm:px-4 max-sm:pt-24'>
+      <div className='max-w-md'>
+        <p className='font-sans font-bold text-4xl py-4'>
           Cleanse Your Mind and Your Space
         </p>
         <p>
@@ -29,21 +32,21 @@ const MainContent = (): JSX.Element => {
           online for quick and easy access to professional cleaning that
           promotes well-being.
         </p>
-        <div className="py-8">
+        <div className='py-8'>
           <Button>Book Now</Button>
         </div>
       </div>
       {imgUrl ? (
         <img
           src={imgUrl}
-          alt="Cartoon woman mopping the floor"
-          className="max-sm:hidden"
+          alt='Cartoon woman mopping the floor'
+          className='max-sm:hidden'
         />
       ) : (
         <p>Loading...</p>
       )}
     </div>
-  );
-};
+  )
+}
 
-export default MainContent;
+export default MainContent
