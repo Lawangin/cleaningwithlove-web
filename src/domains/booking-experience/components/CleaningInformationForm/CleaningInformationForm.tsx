@@ -121,8 +121,8 @@ const CleaningInformationForm = (): JSX.Element => {
 
   return (
     <div>
-      <h3 className='py-4'>Book Now and get same day response!</h3>
-      <h3>1. Cleaning Information</h3>
+      <h3 className='py-4 max-sm:px-2'>Book Now and get same day response!</h3>
+      <h3 className='max-sm:px-2'>1. Cleaning Information</h3>
       <Formik
         initialValues={{}}
         onSubmit={(
@@ -137,8 +137,8 @@ const CleaningInformationForm = (): JSX.Element => {
       >
         <Form>
           {/* <label htmlFor='firstName'>First Name</label> */}
-          <div className='flex flex-col py-4'>
-            <div className='grid gap-4 grid-cols-2 grid-rows-2'>
+          <div className='flex flex-col py-4 max-sm:px-2'>
+            <div className='grid gap-4 grid-cols-2 grid-rows-2 max-sm:grid-cols-1 max-sm:grid-rows-4'>
               <FormCounter label={'Bedrooms'} />
 
               <FormCounter label={'Bathrooms'} />
@@ -160,7 +160,7 @@ const CleaningInformationForm = (): JSX.Element => {
                 <CustomTimeComponent />
               </div>
             </div>
-            <div className='grid grid-cols-2 py-4 justify-items-start'>
+            <div className='grid grid-cols-2 py-4 justify-items-start max-sm:grid-cols-1'>
               <Checkbox
                 label='Clean Inside Fridge'
                 price='40'
@@ -202,7 +202,7 @@ const CleaningInformationForm = (): JSX.Element => {
           <PriceQuoteLabel price={cleaningData.price} />
           <Button
             type='submit'
-            className='flex flex-row-reverse py-4'
+            className='flex flex-row-reverse py-4 max-sm:px-2'
             onClick={(e) => handleClick(e)}
           >
             Next

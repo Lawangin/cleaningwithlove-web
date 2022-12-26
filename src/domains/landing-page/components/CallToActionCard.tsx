@@ -1,6 +1,13 @@
 import Button from '../../global/components/Button'
+import { useRouter } from 'next/router'
 
 const CallToActionCard = (): JSX.Element => {
+  const router = useRouter()
+
+  const handleClick = () => {
+    router.push('/booknow')
+  }
+
   return (
     <div className='bg-white my-8 rounded-lg p-6 max-w-md drop-shadow-md'>
       <p className='font-sans font-bold text-4xl'>
@@ -24,7 +31,7 @@ const CallToActionCard = (): JSX.Element => {
           <span>Stress free.</span>
         </div>
       </div>
-      <Button>Book Now</Button>
+      <Button onClick={handleClick}>Book Now</Button>
     </div>
   )
 }

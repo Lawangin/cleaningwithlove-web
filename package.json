@@ -10,6 +10,7 @@
     "@aws-sdk/s3-request-presigner": "^3.209.0",
     "@types/react-datepicker": "^4.8.0",
     "aws-amplify": "^4.3.43",
+    "compressorjs": "^1.1.1",
     "formik": "^2.2.9",
     "next": "latest",
     "react": "18.2.0",

@@ -37,29 +37,29 @@ const ReviewInformation = (): JSX.Element => {
     .map(([property]) => labelsByProperty[property])
 
   return (
-    <div className='w-[32rem]'>
+    <div className='w-[32rem] max-sm:w-[80vw]'>
       <h3 className='py-4'>Book Now and get same day response!</h3>
       <h3>3. Review and Book</h3>
       <section className='py-4 grid grid-cols-1 gap-4'>
         <h3 className='font-bold'>Personal Information</h3>
-        <div className='grid grid-cols-2'>
+        <div className='grid grid-cols-2 max-sm:grid-cols-1'>
           <div>
             <p className='text-gray-400'>First Name</p>
-            <p>{personalData.firstName}</p>
+            <p className='max-sm:pb-2'>{personalData.firstName}</p>
           </div>
           <div>
-            <p className='text-gray-400'>Last Name</p>
+            <p className='text-gray-400 max-sm:pt-2'>Last Name</p>
             <p>{personalData.lastName}</p>
           </div>
         </div>
 
-        <div className='grid grid-cols-2'>
+        <div className='grid grid-cols-2 max-sm:grid-cols-1'>
           <div>
             <p className='text-gray-400'>Email</p>
-            <p>{personalData.email}</p>
+            <p className='max-sm:pb-2'>{personalData.email}</p>
           </div>
           <div>
-            <p className='text-gray-400'>Phone Number</p>
+            <p className='text-gray-400 max-sm:pt-2'>Phone Number</p>
             <p>{personalData.phone}</p>
           </div>
         </div>
@@ -96,17 +96,17 @@ const ReviewInformation = (): JSX.Element => {
           <p className='text-gray-400'>Rough Estimate</p>
           <p>${cleaningData.price}.00</p>
         </div>
-        <div className='flex flex-row-reverse py-4'>
+        <div className='flex flex-row-reverse py-4 max-sm:flex-col'>
           <Button
             type='submit'
-            className='px-2 min-w-[7rem]'
+            className='px-2 min-w-[7rem] max-sm:px-0 max-sm:py-2'
             onClick={(e) => handleSubmit(e)}
           >
             Submit
           </Button>
           <Button
             type='submit'
-            className='px-2'
+            className='px-2 max-sm:px-0 max-sm:py-2'
             onClick={(e) => handleBack(e)}
             style='secondary'
           >

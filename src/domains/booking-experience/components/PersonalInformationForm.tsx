@@ -137,7 +137,7 @@ const PersonalInformationForm = (): JSX.Element => {
   return (
     <div>
       {error && (
-        <div onClick={() => alert(error)}>
+        <div onClick={() => alert(error)} className='max-sm:px-2'>
           <ErrorBar errorMessage={error} />
         </div>
       )}
@@ -158,8 +158,8 @@ const PersonalInformationForm = (): JSX.Element => {
         <Form>
           {/* <label htmlFor='firstName'>First Name</label> */}
           <div className='flex flex-col py-4'>
-            <div className='flex justify-between py-2'>
-              <div className='mr-1 w-full'>
+            <div className='flex justify-between py-2 max-sm:flex-col'>
+              <div className='mr-1 w-full max-sm:m-0 max-sm:pb-2'>
                 <Field
                   id='firstName'
                   name='firstName'
@@ -173,7 +173,7 @@ const PersonalInformationForm = (): JSX.Element => {
                 />
               </div>
 
-              <div className='ml-1 w-full'>
+              <div className='ml-1 w-full max-sm:m-0 max-sm:pt-2'>
                 <Field
                   id='lastName'
                   name='lastName'
@@ -216,8 +216,8 @@ const PersonalInformationForm = (): JSX.Element => {
               />
             </div>
 
-            <div className='flex py-2'>
-              <div className=''>
+            <div className='flex py-2 max-sm:flex-col'>
+              <div className='max-sm:pb-2'>
                 <Field
                   id='city'
                   name='city'
@@ -230,32 +230,34 @@ const PersonalInformationForm = (): JSX.Element => {
                   value={city}
                 />
               </div>
-              <div className='px-2'>
-                <Field
-                  id='state'
-                  as='select'
-                  name='state'
-                  className='py-2 rounded-md'
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setState(e.target.value)
-                  }
-                  value={state}
-                >
-                  <option value='VA'>VA</option>
-                </Field>
-              </div>
-              <div className=''>
-                <Field
-                  id='zipcode'
-                  name='zipcode'
-                  placeholder='Zip Code'
-                  as={CustomInputComponent}
-                  onBlur={handleZipBlur}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-                    setZipcode(+e.target.value)
-                  }
-                  value={zipcode !== 0 ? zipcode : ''}
-                />
+              <div className='flex max-sm:pt-2'>
+                <div className='px-2 max-sm:pl-0'>
+                  <Field
+                    id='state'
+                    as='select'
+                    name='state'
+                    className='py-2 rounded-md'
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setState(e.target.value)
+                    }
+                    value={state}
+                  >
+                    <option value='VA'>VA</option>
+                  </Field>
+                </div>
+                <div className=''>
+                  <Field
+                    id='zipcode'
+                    name='zipcode'
+                    placeholder='Zip Code'
+                    as={CustomInputComponent}
+                    onBlur={handleZipBlur}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                      setZipcode(+e.target.value)
+                    }
+                    value={zipcode !== 0 ? zipcode : ''}
+                  />
+                </div>
               </div>
             </div>
             <div className='py-2 w-full'>
@@ -272,17 +274,17 @@ const PersonalInformationForm = (): JSX.Element => {
               />
             </div>
           </div>
-          <div className='flex flex-row-reverse'>
+          <div className='flex flex-row-reverse max-sm:flex-col'>
             <Button
               type='submit'
-              className='px-2 min-w-[7rem]'
+              className='p-2 min-w-[7rem] max-sm:px-0'
               onClick={(e) => handleNext(e)}
             >
               Next
             </Button>
             <Button
               type='submit'
-              className='px-2'
+              className='p-2 max-sm:px-0'
               onClick={(e) => handleBack(e)}
               style='secondary'
             >

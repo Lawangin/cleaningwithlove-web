@@ -27,7 +27,7 @@ const Button = ({
       <button
         type={type || 'submit'}
         className={`font-sans text-${textColor} bg-${bgColor} border-2 border-tertiary px-6 py-3 rounded-md 
-        min-w-[7rem] hover:bg-primary hover:border-primary ${hoverColor} ${disabledStyle}`}
+        min-w-[7rem] hover:bg-primary hover:border-primary ${hoverColor} ${disabledStyle} max-sm:w-full`}
         onClick={onClick}
         disabled={disabled}
       >
