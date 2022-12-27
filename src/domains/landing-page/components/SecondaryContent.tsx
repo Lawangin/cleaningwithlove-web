@@ -3,6 +3,7 @@ import { getPresignedUrlWithKey } from '../../../services/s3'
 import { BKG_IMAGE, GROUP_CLEANING } from '../constants/imageKeys'
 import Card from './Card'
 import Compressor from 'compressorjs'
+import Spinner from '../../global/components/Spinner'
 
 const SecondaryContent = (): JSX.Element => {
   const [largeImg, setLargeImg] = useState<Blob | File>()
@@ -47,7 +48,9 @@ const SecondaryContent = (): JSX.Element => {
               loading='lazy'
             />
           ) : (
-            <div>Loading...</div>
+            <div className='place-self-center'>
+              <Spinner />
+            </div>
           )}
 
           <p className='w-3/4'>

@@ -5,6 +5,7 @@ import { getPresignedUrlWithKey } from '../../../services/s3'
 import { LOGO } from '../constants/imageKeys'
 import HamburgerMenu from '../../global/components/HamburgerMenu'
 import Compressor from 'compressorjs'
+import Spinner from '../../global/components/Spinner'
 
 // import awsconfig from '../../../../src/aws-exports'
 
@@ -42,7 +43,9 @@ const NavBar = (): JSX.Element => {
               alt='cleaning with love logo'
             />
           ) : (
-            <p>Loading...</p>
+            <div className='place-self-center'>
+              <Spinner />
+            </div>
           )}
         </Link>
         <div className='flex justify-around items-center max-sm:hidden'>

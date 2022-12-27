@@ -4,6 +4,7 @@ import { getPresignedUrlWithKey } from '../../../services/s3'
 import { WOMAN_CLEANING_IMAGE } from '../constants/imageKeys'
 import { useRouter } from 'next/router'
 import Compressor from 'compressorjs'
+import Spinner from '../../global/components/Spinner'
 
 const MainContent = (): JSX.Element => {
   const [imgUrl, setImgUrl] = useState<Blob | File>()
@@ -66,7 +67,9 @@ const MainContent = (): JSX.Element => {
             className='max-sm:hidden'
           />
         ) : (
-          <p>Loading...</p>
+          <div className='place-self-center'>
+            <Spinner />
+          </div>
         )
       ) : (
         ''

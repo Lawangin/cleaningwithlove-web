@@ -3,6 +3,7 @@ import { getPresignedUrlWithKey } from '../../../services/s3'
 import { CLEANING_GUY_IMAGE } from '../constants/imageKeys'
 import CallToActionCard from './CallToActionCard'
 import Compressor from 'compressorjs'
+import Spinner from '../../global/components/Spinner'
 
 const TertiaryContent = (): JSX.Element => {
   const [imgUrl, setImgUrl] = useState<File | Blob>()
@@ -39,7 +40,9 @@ const TertiaryContent = (): JSX.Element => {
           loading='lazy'
         />
       ) : (
-        <p>Loading...</p>
+        <div className='place-self-center'>
+          <Spinner />
+        </div>
       )}
       <div className='place-self-center'>
         <CallToActionCard />
