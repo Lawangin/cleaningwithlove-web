@@ -16,7 +16,7 @@ const faqs = [
         weekly cleanings, while others prefer biweekly or monthly cleanings.
         It's important to consider factors such as the size of your home, the
         number of people living there, and your personal standards for
-        cleanliness."
+        cleanliness.
       </p>
     ),
     top: true

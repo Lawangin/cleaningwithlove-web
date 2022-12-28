@@ -1,6 +1,6 @@
-import "../styles/globals.css";
-import type { AppProps } from "next/app";
-import NavBar from "../src/domains/landing-page/components/NavBar";
+import '../styles/globals.css'
+import type { AppProps } from 'next/app'
+import NavBar from '../src/domains/landing-page/components/NavBar'
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
@@ -8,7 +8,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <NavBar />
       <Component {...pageProps} />
     </>
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp
