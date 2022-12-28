@@ -135,7 +135,7 @@ const PersonalInformationForm = (): JSX.Element => {
   }
 
   return (
-    <div>
+    <div className='max-sm:px-4'>
       {error && (
         <div onClick={() => alert(error)} className='max-sm:px-2'>
           <ErrorBar errorMessage={error} />
@@ -236,7 +236,7 @@ const PersonalInformationForm = (): JSX.Element => {
                     id='state'
                     as='select'
                     name='state'
-                    className='py-2 rounded-md'
+                    className='py-2 rounded-md bg-gray-200 shadow border max-sm:w-32'
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
                       setState(e.target.value)
                     }
@@ -245,7 +245,7 @@ const PersonalInformationForm = (): JSX.Element => {
                     <option value='VA'>VA</option>
                   </Field>
                 </div>
-                <div className=''>
+                <div className='w-full'>
                   <Field
                     id='zipcode'
                     name='zipcode'

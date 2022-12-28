@@ -21,8 +21,8 @@ const Button = ({
     'disabled:opacity-75 disabled:bg-gray-400 disabled:text-white disabled:border-gray-400 disabled:focus:outline-none'
   const styling =
     style === 'secondary'
-      ? `font-sans text-tertiary bg-white border-2 border-tertiary px-6 py-3 rounded-md min-w-[7rem] hover:bg-primary hover:border-primary hover:text-white ${disabledStyle}`
-      : `font-sans text-white bg-tertiary border-2 border-tertiary px-6 py-3 rounded-md min-w-[7rem] hover:bg-primary hover:border-primary hover:text-white ${disabledStyle}`
+      ? `font-sans max-sm:w-full text-tertiary bg-white border-2 border-tertiary px-6 py-3 rounded-md min-w-[7rem] hover:bg-primary hover:border-primary hover:text-white ${disabledStyle}`
+      : `font-sans max-sm:w-full text-white bg-tertiary border-2 border-tertiary px-6 py-3 rounded-md min-w-[7rem] hover:bg-primary hover:border-primary hover:text-white ${disabledStyle}`
   return (
     <div className={className}>
       <button

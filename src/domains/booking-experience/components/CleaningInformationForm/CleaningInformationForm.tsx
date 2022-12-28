@@ -120,9 +120,9 @@ const CleaningInformationForm = (): JSX.Element => {
   ])
 
   return (
-    <div>
-      <h3 className='py-4 max-sm:px-2'>Book Now and get same day response!</h3>
-      <h3 className='max-sm:px-2'>1. Cleaning Information</h3>
+    <div className='max-sm:px-4'>
+      <h3 className='py-4'>Book Now and get same day response!</h3>
+      <h3 className=''>1. Cleaning Information</h3>
       <Formik
         initialValues={{}}
         onSubmit={(
@@ -137,7 +137,7 @@ const CleaningInformationForm = (): JSX.Element => {
       >
         <Form>
           {/* <label htmlFor='firstName'>First Name</label> */}
-          <div className='flex flex-col py-4 max-sm:px-2'>
+          <div className='flex flex-col py-4'>
             <div className='grid gap-4 grid-cols-2 grid-rows-2 max-sm:grid-cols-1 max-sm:grid-rows-4'>
               <FormCounter label={'Bedrooms'} />
 
@@ -202,7 +202,7 @@ const CleaningInformationForm = (): JSX.Element => {
           <PriceQuoteLabel price={cleaningData.price} />
           <Button
             type='submit'
-            className='flex flex-row-reverse py-4 max-sm:px-2'
+            className='flex flex-row-reverse py-4'
             onClick={(e) => handleClick(e)}
           >
             Next

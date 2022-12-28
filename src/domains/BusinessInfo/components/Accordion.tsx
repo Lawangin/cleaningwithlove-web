@@ -3,6 +3,8 @@ import { useState } from 'react'
 interface AccordionItem {
   title: string
   content: React.ReactNode
+  top?: boolean
+  bottom?: boolean
 }
 
 interface AccordionProps {
@@ -17,12 +19,16 @@ const Accordion = ({ items }: AccordionProps): JSX.Element => {
   }
 
   return (
-    <div className='p-32'>
+    <div>
       {items.map((item, index) => (
-        <div key={index}>
+        <div key={index} className='grid grid-cols-1 place-items-center'>
           <button
             onClick={() => handleClick(index)}
-            className='flex items-center justify-between p-4 w-full max-w-3xl text-black bg-gray-100 border rounded-t-md outline-none focus:outline-none hover:bg-brandBlue'
+            className={`flex items-center justify-between p-4 w-full max-w-3xl text-black bg-gray-100 border ${
+              item.top ? 'rounded-t-md' : ''
+            } ${
+              item.bottom ? 'rounded-b-md' : ''
+            } outline-none focus:outline-none hover:bg-brandBlue`}
           >
             {item.title}
             <svg

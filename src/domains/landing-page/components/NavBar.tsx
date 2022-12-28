@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import ContainerWrapper from './ContainerWrapper'
 import { getPresignedUrlWithKey } from '../../../services/s3'
-import { LOGO } from '../constants/imageKeys'
+import { BLOB_LOGO } from '../constants/imageKeys'
 import HamburgerMenu from '../../global/components/HamburgerMenu'
 import Compressor from 'compressorjs'
 import Spinner from '../../global/components/Spinner'
@@ -12,21 +12,15 @@ import Spinner from '../../global/components/Spinner'
 // logger.debug('awsconfigs', awsconfig)
 
 const NavBar = (): JSX.Element => {
-  const [imgUrl, setImgUrl] = useState<Blob | File>()
+  const [imgUrl, setImgUrl] = useState<string>()
 
   const fetchImage = async () => {
-    const { presignedUrls } = await getPresignedUrlWithKey('publicAssets', LOGO)
+    const { presignedUrls } = await getPresignedUrlWithKey(
+      'publicAssets',
+      BLOB_LOGO
+    )
 
-    const image = await fetch(presignedUrls as RequestInfo | URL)
-    const imageBlob = await image.blob()
-
-    new Compressor(imageBlob, {
-      quality: 0.5,
-      success: (compressedResult) => {
-        // compressedResult has the compressed file.
-        setImgUrl(compressedResult)
-      }
-    })
+    setImgUrl(presignedUrls)
   }
 
   useEffect(() => {
@@ -38,10 +32,7 @@ const NavBar = (): JSX.Element => {
       <div className='grid grid-cols-2 grid-rows-1 content-center'>
         <Link href='/' className='w-20 mx-4 mt-2 max-sm:m-0'>
           {imgUrl ? (
-            <img
-              src={URL.createObjectURL(imgUrl)}
-              alt='cleaning with love logo'
-            />
+            <img src={imgUrl} alt='cleaning with love logo' />
           ) : (
             <div className='place-self-center'>
               <Spinner />
@@ -67,12 +58,12 @@ const NavBar = (): JSX.Element => {
           >
             FAQ
           </Link>
-          {/* <Link
-            href="/aboutus"
-            className="font-sans hover:text-secondary focus:text-secondary focus:font-semibold"
+          <Link
+            href='/aboutus'
+            className='font-sans hover:text-secondary focus:text-secondary focus:font-semibold'
           >
             About Us
-          </Link> */}
+          </Link>
         </div>
         <div className='sm:hidden'>
           <HamburgerMenu />

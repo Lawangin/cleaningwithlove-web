@@ -1,64 +1,66 @@
-import { useEffect, useState } from "react";
-import { useBookingContext } from "../../context/BookingContext";
-import NextIcon from "./NextIcon";
+import { useEffect, useState } from 'react'
+import { useBookingContext } from '../../context/BookingContext'
+import NextIcon from './NextIcon'
 
 const BreadCrumb = (): JSX.Element => {
-  const { pageName, setPageName } = useBookingContext();
+  const { pageName, setPageName } = useBookingContext()
 
   const [activePage, setActivePage] = useState({
     cleaning: true,
     personal: false,
-    review: false,
-  });
+    review: false
+  })
 
   const handleClick = (name: string, e: any): void => {
-    setPageName(name);
+    setPageName(name)
 
-    e.preventDefault();
-  };
+    e.preventDefault()
+  }
 
-  const shouldReviewBeDisabled = (): boolean => !activePage.review;
-  const shouldPersonalBeDisabled = (): boolean => activePage.cleaning;
+  const shouldReviewBeDisabled = (): boolean => !activePage.review
+  const shouldPersonalBeDisabled = (): boolean => activePage.cleaning
 
   useEffect(() => {
-    if (pageName === "cleaningInformation") {
-      setActivePage({ cleaning: true, personal: false, review: false });
+    if (pageName === 'cleaningInformation') {
+      setActivePage({ cleaning: true, personal: false, review: false })
     }
-    if (pageName === "personalInformation") {
-      setActivePage({ cleaning: false, personal: true, review: false });
+    if (pageName === 'personalInformation') {
+      setActivePage({ cleaning: false, personal: true, review: false })
     }
-    if (pageName === "reviewAndBook") {
-      setActivePage({ cleaning: false, personal: false, review: true });
+    if (pageName === 'reviewAndBook') {
+      setActivePage({ cleaning: false, personal: false, review: true })
     }
-  }, [pageName]);
+  }, [pageName])
 
   return (
-    <nav className="flex" aria-label="Breadcrumb">
-      <ol className="inline-flex items-center space-x-1 md:space-x-3">
-        <li className="inline-flex items-center" aria-current="page">
+    <nav className='flex' aria-label='Breadcrumb'>
+      <ol className='inline-flex items-center space-x-1 md:space-x-3'>
+        <li className='inline-flex items-center' aria-current='page'>
           <button
             className={`inline-flex items-center text-sm font-medium ${
-              activePage.cleaning ? "text-primary" : "text-gray-700"
+              activePage.cleaning
+                ? 'text-primary max-sm:text-purple-800'
+                : 'text-gray-700'
             } hover:text-gray-900 
             dark:text-gray-400 dark:hover:text-white`}
-            onClick={(event) => handleClick("cleaningInformation", event)}
+            onClick={(event) => handleClick('cleaningInformation', event)}
           >
             Cleaning Information
           </button>
         </li>
         <li>
-          <div className="flex items-center">
+          <div className='flex items-center'>
             <NextIcon />
             <button
               className={`inline-flex items-center text-sm font-medium ${
                 activePage.personal
-                  ? "text-primary"
+                  ? 'text-primary'
                   : activePage.cleaning
-                  ? "text-gray-500"
-                  : "text-gray-700"
+                  ? 'text-gray-500'
+                  : 'text-gray-700'
               } hover:text-gray-900 
               dark:text-gray-400 dark:hover:text-white`}
-              onClick={(event) => handleClick("personalInformation", event)}
+              onClick={(event) => handleClick('personalInformation', event)}
               disabled={shouldPersonalBeDisabled()}
             >
               Personal Information
@@ -66,14 +68,14 @@ const BreadCrumb = (): JSX.Element => {
           </div>
         </li>
         <li>
-          <div className="flex items-center">
+          <div className='flex items-center'>
             <NextIcon />
             <button
               className={`inline-flex items-center text-sm font-medium ${
-                activePage.review ? "text-primary" : "text-gray-500"
+                activePage.review ? 'text-primary' : 'text-gray-500'
               } hover:text-gray-900 
               dark:text-gray-400 dark:hover:text-white`}
-              onClick={(event) => handleClick("reviewAndBook", event)}
+              onClick={(event) => handleClick('reviewAndBook', event)}
               disabled={shouldReviewBeDisabled()}
             >
               Review & Book
@@ -82,7 +84,7 @@ const BreadCrumb = (): JSX.Element => {
         </li>
       </ol>
     </nav>
-  );
-};
+  )
+}
 
-export default BreadCrumb;
+export default BreadCrumb

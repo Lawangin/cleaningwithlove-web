@@ -18,7 +18,8 @@ const faqs = [
         number of people living there, and your personal standards for
         cleanliness."
       </p>
-    )
+    ),
+    top: true
   },
   {
     title: 'What tasks are included in a typical house cleaning service?',
@@ -84,7 +85,8 @@ const faqs = [
         the frequency of cleanings when deciding if a house cleaning service is
         worth the cost for you.
       </p>
-    )
+    ),
+    bottom: true
   }
 ]
 
@@ -92,7 +94,12 @@ const Faq: NextPage = () => {
   return (
     <>
       <PageLayout title='CWL - Book Now'>
-        <Accordion items={faqs} />
+        <div className='p-24 max-sm:py-32 max-sm:px-2'>
+          <p className='text-center text-3xl font-bold pb-8'>
+            Frequently Asked Questions (F.A.Q)
+          </p>
+          <Accordion items={faqs} />
+        </div>
       </PageLayout>
     </>
   )

@@ -37,7 +37,7 @@ const ReviewInformation = (): JSX.Element => {
     .map(([property]) => labelsByProperty[property])
 
   return (
-    <div className='w-[32rem] max-sm:w-[80vw]'>
+    <div className='p-4'>
       <h3 className='py-4'>Book Now and get same day response!</h3>
       <h3>3. Review and Book</h3>
       <section className='py-4 grid grid-cols-1 gap-4'>

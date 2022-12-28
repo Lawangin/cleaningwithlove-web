@@ -1,29 +1,19 @@
 import { useEffect, useState } from 'react'
 import { getPresignedUrlWithKey } from '../../../services/s3'
-import { BKG_IMAGE, GROUP_CLEANING } from '../constants/imageKeys'
+import { BLOB_GROUP } from '../constants/imageKeys'
 import Card from './Card'
-import Compressor from 'compressorjs'
 import Spinner from '../../global/components/Spinner'
 
 const SecondaryContent = (): JSX.Element => {
-  const [largeImg, setLargeImg] = useState<Blob | File>()
+  const [largeImg, setLargeImg] = useState<string>()
 
   const fetchImages = async () => {
     const { presignedUrls: groupImgUrl } = await getPresignedUrlWithKey(
       'publicAssets',
-      GROUP_CLEANING
+      BLOB_GROUP
     )
 
-    const image = await fetch(groupImgUrl as RequestInfo | URL)
-    const imageBlob = await image.blob()
-
-    new Compressor(imageBlob, {
-      quality: 0.5,
-      success: (compressedResult) => {
-        // compressedResult has the compressed file.
-        setLargeImg(compressedResult)
-      }
-    })
+    setLargeImg(groupImgUrl)
   }
 
   useEffect(() => {
@@ -43,7 +33,7 @@ const SecondaryContent = (): JSX.Element => {
         <div className='grid grid-cols-2 grid-rows-1 gap-16 px-4 items-center max-sm:grid-cols-1'>
           {largeImg ? (
             <img
-              src={URL.createObjectURL(largeImg)}
+              src={largeImg}
               className='rounded-3xl drop-shadow-sm'
               loading='lazy'
             />

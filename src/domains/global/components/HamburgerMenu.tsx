@@ -46,26 +46,14 @@ const HamburgerMenu = (): JSX.Element => {
               <li className='border-b border-gray-400 my-8 uppercase'>
                 <a href='/faq'>FAQ</a>
               </li>
+              <li className='border-b border-gray-400 my-8 uppercase'>
+                <a href='/aboutus'>About Us</a>
+              </li>
             </ul>
           </div>
         </section>
 
-        <ul className='DESKTOP-MENU hidden space-x-8 lg:flex'>
-          <li>
-            <a href='/about' className='font-bold'>
-              Book Now
-            </a>
-          </li>
-          <li>
-            <a href='/portfolio'>Home</a>
-          </li>
-          <li>
-            <a href='/contact'>FAQ</a>
-          </li>
-          {/* <li>
-            <a href="/contact">Contact</a>
-          </li> */}
-        </ul>
+        <ul className='DESKTOP-MENU hidden space-x-8 lg:flex'></ul>
       </nav>
       <style>{`
         .hideMenuNav {

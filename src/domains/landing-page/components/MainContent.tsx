@@ -1,13 +1,14 @@
 import { useEffect, useState, useRef } from 'react'
 import Button from '../../global/components/Button'
 import { getPresignedUrlWithKey } from '../../../services/s3'
-import { WOMAN_CLEANING_IMAGE } from '../constants/imageKeys'
+import { BLOB_MOP, WOMAN_CLEANING_IMAGE } from '../constants/imageKeys'
 import { useRouter } from 'next/router'
 import Compressor from 'compressorjs'
 import Spinner from '../../global/components/Spinner'
 
 const MainContent = (): JSX.Element => {
-  const [imgUrl, setImgUrl] = useState<Blob | File>()
+  // const [imgUrl, setImgUrl] = useState<Blob | File>()
+  const [imgUrl, setImgUrl] = useState<string>()
   const [mobile, setMobile] = useState<MediaQueryList | undefined>(undefined)
 
   const router = useRouter()
@@ -17,19 +18,26 @@ const MainContent = (): JSX.Element => {
   const fetchImage = async () => {
     const { error, presignedUrls } = await getPresignedUrlWithKey(
       'publicAssets',
-      WOMAN_CLEANING_IMAGE
+      BLOB_MOP
     )
 
-    const image = await fetch(presignedUrls as RequestInfo | URL)
-    const imageBlob = await image.blob()
+    setImgUrl(presignedUrls)
 
-    new Compressor(imageBlob, {
-      quality: 0.5,
-      success: (compressedResult) => {
-        // compressedResult has the compressed file.
-        setImgUrl(compressedResult)
-      }
-    })
+    // const { error, presignedUrls } = await getPresignedUrlWithKey(
+    //   'publicAssets',
+    //   WOMAN_CLEANING_IMAGE
+    // )
+
+    // const image = await fetch(presignedUrls as RequestInfo | URL)
+    // const imageBlob = await image.blob()
+
+    // new Compressor(imageBlob, {
+    //   quality: 0.5,
+    //   success: (compressedResult) => {
+    //     // compressedResult has the compressed file.
+    //     setImgUrl(compressedResult)
+    //   }
+    // })
   }
 
   const handleClick = () => {
@@ -62,7 +70,8 @@ const MainContent = (): JSX.Element => {
       {mobile !== undefined && mobile.matches ? (
         imgUrl ? (
           <img
-            src={URL.createObjectURL(imgUrl)}
+            // src={URL.createObjectURL(imgUrl)}
+            src={imgUrl}
             alt='Cartoon woman mopping the floor'
             className='max-sm:hidden'
           />
