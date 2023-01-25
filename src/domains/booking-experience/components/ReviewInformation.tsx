@@ -1,12 +1,14 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Button from '../../global/components/Button'
 import { useBookingContext } from '../context/BookingContext'
 
 const ReviewInformation = (): JSX.Element => {
+  const [status, setStatus] = useState('')
+
   const { cleaningData, personalData, setPageName } = useBookingContext()
 
   const handleSubmit = (e: React.MouseEvent) => {
-    return
+    return sendPostMessage()
   }
 
   const handleBack = (e: React.MouseEvent): void => {
@@ -35,6 +37,40 @@ const ReviewInformation = (): JSX.Element => {
   const extraLabels: string[] = Object.entries(cleaningData.extras)
     .filter(([_, value]) => value)
     .map(([property]) => labelsByProperty[property])
+
+  const sendPostMessage = async () => {
+    const data = {
+      email: personalData.email,
+      data: {
+        personalData,
+        cleaningData
+      },
+      name: `${personalData.firstName} ${personalData.lastName}`
+    }
+
+    try {
+      // Make the POST request to the /api/sendemail endpoint
+      const response = await fetch('/api/sendemail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      })
+
+      // Check the response status
+      if (response.ok) {
+        // Update the status if the email was sent successfully
+        setStatus('Email sent successfully')
+      } else {
+        // Update the status if there was an error
+        setStatus('Error sending email')
+      }
+    } catch (error) {
+      // Update the status if there was an error
+      setStatus('Error sending email')
+    }
+  }
 
   return (
     <div className='p-4'>
@@ -96,6 +132,7 @@ const ReviewInformation = (): JSX.Element => {
           <p className='text-gray-400'>Rough Estimate</p>
           <p>${cleaningData.price}.00</p>
         </div>
+        <div>{status.length > 1 ? status : null}</div>
         <div className='flex flex-row-reverse py-4 max-sm:flex-col'>
           <Button
             type='submit'

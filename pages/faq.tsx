@@ -2,11 +2,6 @@ import { NextPage } from 'next'
 import Accordion from '../src/domains/BusinessInfo/components/Accordion'
 import PageLayout from '../src/domains/global/components/layout/PageLayout'
 
-interface AccordionItem {
-  title: string
-  content: React.ReactNode
-}
-
 const faqs = [
   {
     title: 'How often should I schedule a house cleaning?',
