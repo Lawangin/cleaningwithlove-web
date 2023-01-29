@@ -50,7 +50,7 @@ const ReviewInformation = (): JSX.Element => {
 
     try {
       // Make the POST request to the /api/sendemail endpoint
-      const response = await fetch('/api/sendemail', {
+      const response = await fetch('/api/emailsend', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
