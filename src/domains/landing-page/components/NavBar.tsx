@@ -48,13 +48,13 @@ const NavBar = (): JSX.Element => {
           </Link>
           <Link
             href='/'
-            className='font-sans hover:text-tertiary focus:text-secondary focus:font-semibold'
+            className='font-sans hover:text-secondary focus:text-secondary focus:font-semibold'
           >
             Home
           </Link>
           <Link
             href='/faq'
-            className='font-sans hover:text-tertiary focus:text-secondary focus:font-semibold'
+            className='font-sans hover:text-secondary focus:text-secondary focus:font-semibold'
           >
             FAQ
           </Link>
